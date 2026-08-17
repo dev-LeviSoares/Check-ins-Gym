@@ -1,10 +1,10 @@
 import { PrismaCheckInsRepository } from "../../repositories/prisma/prisma-check-ins-repository.js";
-import { GetUserMetricsService } from "../get-user-metrics.js";
+import { ValidateCheckInService } from "../validate-check-in.js";
 
-export function makeGetUserMetricsService() {
+export function makeValidateCheckInService() {
   // Dependency Inverison Principle
   const checkInsRepository = new PrismaCheckInsRepository(); // Instancio o repo
-  const useCase = new GetUserMetricsService(checkInsRepository) // Define o repo no constrututor da classe
+  const useCase = new ValidateCheckInService(checkInsRepository) // Define o repo no constrututor da classe
 
   return useCase;
 }  
