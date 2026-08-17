@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeEach, afterEach, vi } from "vitest";
 import { InMemoryCheckInsRepository } from "../repositories/in-memory/in-memory-check-ins-repository.js";
-import { ValidateCheckInService } from "./validate_check-in.js";
+import { ValidateCheckInService } from "./validate-check-in.js";
 import { ResourceNotFoundError } from "./errors/resource-not-found-error.js";
 
 let checkInsRepository: InMemoryCheckInsRepository;
@@ -30,7 +30,7 @@ describe('Validate Check-in Use Case', () => {
     })
 
     expect(checkIn.validated_at).toEqual(expect.any(Date))
-    expect(checkInsRepository.items[0].validated_at).toEqual(expect.any(Date))
+    expect(checkInsRepository.items[0]!.validated_at).toEqual(expect.any(Date))
 
   })
 
