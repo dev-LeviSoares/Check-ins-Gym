@@ -4,7 +4,7 @@ import { prisma } from "../../lib/prisma.js";
 import type {
   FindManyNearbyParams,
   GymsRepository,
-} from "../gyms_repository.js";
+} from "../gyms-repository.js";
 
 export class PrismaGymsRepository implements GymsRepository {
   async findById(id: string) {

@@ -1,4 +1,4 @@
-import type { GymsRepository } from "../repositories/gyms_repository.js";
+import type { GymsRepository } from "../repositories/gyms-repository.js";
 import type { Gym } from "../generated/prisma/client.js";
 
 interface FetchNearbyGymsServiceRequest {

@@ -1,6 +1,6 @@
 import type { CheckIn } from "../generated/prisma/client.js";
 import type { CheckInsRepository } from "../repositories/check-ins-repositories.js";
-import type { GymsRepository } from "../repositories/gyms_repository.js";
+import type { GymsRepository } from "../repositories/gyms-repository.js";
 import { getDistanceBetweenCoordinates } from "../utils/get-distance-between-coordinates.js";
 import { MaxDistanceError } from "./errors/max-distance-error.js";
 import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins-error.js";

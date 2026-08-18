@@ -1,6 +1,6 @@
 import { Decimal } from "@prisma/client/runtime/client";
 import type { Gym, Prisma } from "../../generated/prisma/client.js";
-import type { FindManyNearbyParams, GymsRepository } from "../gyms_repository.js";
+import type { FindManyNearbyParams, GymsRepository } from "../gyms-repository.js";
 import { randomUUID } from "node:crypto";
 import { getDistanceBetweenCoordinates } from "../../utils/get-distance-between-coordinates.js";
 

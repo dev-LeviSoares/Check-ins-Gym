@@ -1,7 +1,7 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
 import { InvalidCredentialsError } from "../../services/errors/invalid-credentials-error.js";
-import { makeAuthenticaService } from "../../services/factories/make-authenticate-service.js";
+import { makeAuthenticateService } from "../../services/factories/make-authenticate-service.js";
 
 
 export async function authenticate (request: FastifyRequest, reply: FastifyReply) {
@@ -13,12 +13,23 @@ export async function authenticate (request: FastifyRequest, reply: FastifyReply
   const { email, password } = registerBodySchema.parse(request.body);
 
   try {
-    const authenticateService = makeAuthenticaService();
+    const authenticateService = makeAuthenticateService();
 
-    await authenticateService.execute({ // Dependencia vai para a interface da regra de negócio
+    const { user } = await authenticateService.execute({ // Dependencia vai para a interface da regra de negócio
       email,
       password
     });
+    
+    const token = await reply.jwtSign(
+      {}, 
+      {
+        sign: {
+          sub: user.id
+        }
+      }
+    );
+
+    return reply.status(200).send({ token: token })
 
   } catch (err) {
     if( err instanceof InvalidCredentialsError) {
@@ -27,6 +38,4 @@ export async function authenticate (request: FastifyRequest, reply: FastifyReply
 
     return reply.status(500).send() // TODO: fix me
   }
-
-  return reply.status(200).send({ message: "User authenticated"})
 }
