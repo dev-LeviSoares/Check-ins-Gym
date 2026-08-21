@@ -1,7 +1,7 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
-import { UserAlreadyExistsError } from "../../services/errors/user-already-exists-error.js";
-import { makeRegisterService} from "../../services/factories/make-register-service.js";
+import { UserAlreadyExistsError } from "../../../services/errors/user-already-exists-error.js";
+import { makeRegisterService} from "../../../services/factories/make-register-service.js";
 
 export async function register (request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({

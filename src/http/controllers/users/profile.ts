@@ -1,6 +1,6 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import { makeGetUserProfileService } from "../../services/factories/make-get-user-profile-service.js";
-
+import { makeGetUserProfileService } from "../../../services/factories/make-get-user-profile-service.js";
+import { z } from 'zod';
 
 export async function profile (request: FastifyRequest, reply: FastifyReply) {
 
