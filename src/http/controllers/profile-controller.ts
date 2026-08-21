@@ -1,9 +1,19 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
+import { makeGetUserProfileService } from "../../services/factories/make-get-user-profile-service.js";
 
 
 export async function profile (request: FastifyRequest, reply: FastifyReply) {
-  await request.jwtVerify();
 
-  console.log(request.user)
-  return reply.status(200).send()
+  const getUserProfile = makeGetUserProfileService();
+
+  const { user } = await getUserProfile.execute({
+    userId: request.user.sub,
+  })
+
+  return reply.status(200).send({
+    user: {
+      ...user,
+      password_hash: undefined
+    } 
+  })
 }
