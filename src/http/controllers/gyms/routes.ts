@@ -10,5 +10,5 @@ export async function gymRoutes(app: FastifyInstance) {
   app.get('/gyms/search', search);
   app.get('/gyms/nearby', nearby);
   
-  app.post('/create-gym', create);
+  app.post('/gyms', create);
 }

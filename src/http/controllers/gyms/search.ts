@@ -4,16 +4,16 @@ import { makeSearchGymService } from "../../../services/factories/make-search-gy
 
 export async function search(request: FastifyRequest, reply: FastifyReply) {
   const searchGymsQuerySchema = z.object({
-    query:  z.string(),
+    q:  z.string(),
     page: z.coerce.number().min(1).default(1)
   });
 
-  const { page, query } = searchGymsQuerySchema.parse(request.query);
+  const { page, q } = searchGymsQuerySchema.parse(request.query);
 
   const searchGymsService= makeSearchGymService();
 
   const { gyms } = await searchGymsService.execute({ // Dependencia vai para a interface da regra de negócio
-    query,
+    query: q,
     page
   });
 
