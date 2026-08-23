@@ -4,6 +4,7 @@ import { create } from './create.js';
 import { validate } from './validate.js';
 import { history } from './history.js';
 import { metrics } from './metrics.js';
+import { verifyUserRole } from '../../middlewares/verify-user-role.js';
 
 
 export async function checkInsRoutes(app: FastifyInstance) {
@@ -13,5 +14,5 @@ export async function checkInsRoutes(app: FastifyInstance) {
   app.get('/check-ins/metrics', metrics);
   
   app.post('/gyms/:gymId/check-ins', create);
-  app.patch('/check-ins/:checkInId/validate', validate);
+  app.patch('/check-ins/:checkInId/validate', { onRequest: [verifyUserRole('ADMIN')] }, validate);
 }

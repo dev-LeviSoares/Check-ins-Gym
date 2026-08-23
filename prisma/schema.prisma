@@ -12,12 +12,18 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  ADMIN
+  MEMBER
+}
+
 // 2 @@ = Config de tabela - 1 @ = Config de campo
 model User {
   id            String   @id @default(uuid())
   name          String
   email         String   @unique
   password_hash String
+  role          Role     @default(MEMBER)
   created_at    DateTime @default(now())
 
   checkIns CheckIn[] // Isso não gera coluna no banco de dados - Sera acessado pelo Typescript com esse nome
