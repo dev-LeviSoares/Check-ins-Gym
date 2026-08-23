@@ -1,4 +1,4 @@
-ame: Run E2E Tests
+name: Run E2E Tests
 on: [pull_request]
 
 jobs:
@@ -26,6 +26,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npx prisma generate
+      
       - run: npm run test:e2e
         env: 
           JWT_SECRET: testing
